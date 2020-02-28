@@ -1,6 +1,6 @@
-class CreateBoardGames < ActiveRecord::Migration
+class CreateGames < ActiveRecord::Migration
   def change
-    create_table :board_games do |t|
+    create_table :games do |t|
       t.string :name 
       t.string :player_count
       t.string :playing_time
