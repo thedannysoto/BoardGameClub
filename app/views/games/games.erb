@@ -1,0 +1,12 @@
+<h1><%= @user[:username] %></h1>
+<br>
+<br>
+<% if !@user.games.empty? %>
+    <ul>
+    <% @user.games.each do |game| %>
+        <li><%= game[:name] %></li>
+    <% end %>
+    </ul>
+<% else %>
+    <h2><a href='/games/new'>Add</a> a game to your collection! </h2>
+<% end %>
