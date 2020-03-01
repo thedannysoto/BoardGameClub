@@ -11,11 +11,12 @@ class UserController < ApplicationController
             redirect "/failure"
         end
         user.save
-        redirect "/login"
+        flash[:message] = "New account created!"
+        erb :'/user/login'
     end
 
     get '/login' do
-        erb :'/user/login2'
+        erb :'/user/login'
     end
 
     post "/login" do
