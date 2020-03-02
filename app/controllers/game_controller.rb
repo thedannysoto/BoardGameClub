@@ -7,7 +7,7 @@ class GameController < ApplicationController
             erb :'/games/games'
         else 
             flash[:alert] = "You must be logged in to view that page."
-            erb :'/user/login'
+            redirect '/login'
         end 
     end
 
