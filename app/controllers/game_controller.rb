@@ -29,6 +29,7 @@ class GameController < ApplicationController
         game = Game.new(params[:game])
         game.users << current_user
         game.save
+        flash[:message] = "Game successfully added to collection!"
         redirect '/games'
     end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200228170416) do
+ActiveRecord::Schema.define(version: 20200303213927) do
 
   create_table "games", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20200228170416) do
     t.string "playing_time"
     t.string "complexity"
     t.string "publisher"
+    t.string "year_published"
+    t.string "img_url"
   end
 
   create_table "user_games", force: :cascade do |t|
