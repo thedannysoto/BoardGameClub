@@ -13,17 +13,6 @@
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
-  <header>
-    <% if flash.has?(:message) %>    
-      <div id="notice-wrapper">
-        <p class="notice"><%= flash[:message] %></p>
-      </div>
-    <% elsif flash.has?(:alert) %>
-      <div id="alert-wrapper">
-        <p class="alert"><%= flash[:alert] %></p>
-      </div>
-    <% end %>
-  </header>
   <body>
     <div class="wrapper">
 
@@ -39,24 +28,6 @@
       <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
     <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script>
-      $(document).ready(function(){
-        setTimeout(function(){
-          $('#notice-wrapper').fadeOut("slow", function(){
-            $(this).remove();  
-          })
-        }, 4500);
-      });
-   </script>
-   <script>
-      $(document).ready(function(){
-        setTimeout(function(){
-          $('#alert-wrapper').fadeOut("slow", function(){
-            $(this).remove();  
-          })
-        }, 4500);
-      });
-   </script>
-
+    <script src="/javascripts/my.js"></script>
   </body>
 </html>

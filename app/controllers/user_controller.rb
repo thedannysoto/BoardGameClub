@@ -25,8 +25,8 @@ class UserController < ApplicationController
             session[:user_id] = @user.id
             redirect "/games"
         else
-            flash[:alert] = "Invalid username or password."
-            erb :'/user/login'
+            flash[:alert] = "Invalid username and/or password."
+            redirect '/login'
         end
     end
 

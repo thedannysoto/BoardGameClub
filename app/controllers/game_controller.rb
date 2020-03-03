@@ -12,7 +12,13 @@ class GameController < ApplicationController
     end
 
     get '/games/new' do 
-        erb :'/games/new'
+        if logged_in?
+            @user = current_user
+            erb :'/games/new'
+        else 
+            flash[:alert] = "You must be logged in to view that page."
+            redirect '/login'
+        end 
     end
 
     post '/games' do 
