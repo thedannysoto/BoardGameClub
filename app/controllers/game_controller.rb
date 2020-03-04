@@ -32,4 +32,20 @@ class GameController < ApplicationController
         flash[:message] = "Game successfully added to collection!"
         redirect '/games'
     end
+
+    get "/games/edit/:id" do 
+        @game = Game.find_by_id(params[:id])
+        if logged_in?
+            @user = current_user
+            erb :'/games/edit'
+        end 
+
+    end
+
+    patch "/games/edit/:id" do 
+        if params[:game][:name].empty?
+            flash[:alert] = "Name field cannot be left blank."
+            redirect "/games/edit/"
+        end
+    end
 end

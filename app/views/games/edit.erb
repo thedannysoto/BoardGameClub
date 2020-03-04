@@ -77,53 +77,87 @@
   </nav>
   <header class="bg-white shadow">
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold leading-tight text-gray-900">
-        <%= @user.username %>
+      <h2 class="text-center text-3xl font-bold leading-tight text-gray-900">
+        Edit a Game in Your Collection:
       </h2>
     </div>
   </header>
   <main>
-<div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
       <!-- Replace with your content -->
-<% if !@user.games.empty?%>
-  <div class="flex flex-wrap justify-start">
-  <% @user.games.each do |game| %>
-      <div class="max-w-sm overflow-hidden shadow-lg mx-10 my-10">
-        <% if game[:img_url] %>
-          <img class="w-full" src="<%= game[:img_url] %>" alt ="<%= game[:name] %>">
-        <% else %>
-          <img class="w-full" src="/images/gameboard.jpg" alt ="<%= game[:name] %>">
-        <% end %>
-        <div class="px-6 py-4">
-          <div class="font-bold text-xl mb-2"><%= game[:name] %></div>
-          <p class="text-gray-700 text-base">
-          <b>Publisher: </b><%= game[:publisher] %>
-          </p>
-          <p class="text-gray-700 text-base">
-          <b>Year Published: </b><%= game[:year_published] %>
-          </p>
-          <p class="text-gray-700 text-base">
-          <b>Player Count: </b><%= game[:player_count] %>
-          </p>
-          <p class="text-gray-700 text-base">
-          <b>Playing Time: </b><%= game[:playing_time] %>
-          </p>
-          <p class="text-gray-700 text-base">
-          <b>Complexity: </b><%= game[:complexity] %>
-          </p>
+<form class="mx-auto max-w-lg" action="/games/new/edit" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="w-full px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            Name
+            </label>
+            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-name" type="text" placeholder="<%= game[:name] %>" name="game[name]">
+            <p class="text-red-500 text-xs italic">Please fill out this field.</p>
         </div>
-        <div class="flex justify-end my-4">
-          <a href="/games/edit/<%= game[:id] %>"><button class="w-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-            Edit
-          </button></a>
-          <a href="/games/edit"><button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 mx-4 rounded focus:outline-none focus:shadow-outline" type="button">
-            Delete
-          </button></a>
+    </div>
+    <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="w-full px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            Publisher Name
+            </label>
+            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-publisher" type="text" name="game[publisher]" placeholder="<%= game[:publisher] %>">
+        </div>
+    </div>
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Year Published
+      </label>
+      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-year" placeholder="YYYY" type="text" name="game[year_published]" placeholder="<%= game[:year_published] %>">
+    </div>
+  </div>
+  <div class="flex flex-wrap -mx-3 mb-2">
+    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-players">
+        Number of Players
+      </label>
+      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="<%= game[:player_count] %>" name="game[player_count]">
+    </div>
+    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-time">
+        Playing Time
+      </label>
+      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="text" placeholder="<%= game[:playing_time] %>" name="game[playing_time]">
+    </div>
+    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+        Complexity
+      </label>
+      <div class="relative">
+        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-complexity" name="game[complexity]">
+          <option>Light</option>
+          <option>Medium</option>
+          <option>Heavy</option>
+        </select>
+        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+          <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
         </div>
       </div>
-      <% end %>
-      <% end %>
     </div>
+  </div>
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full px-3 my-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-image-url">
+        Image URL
+      </label>
+      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-image-url" type="text" name="game[img_url]">
+    </div>
+  </div>
+  <div class="mt-6">
+        <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+          <span class="absolute left-0 inset-y pl-3">
+          </span>
+          Create
+        </button>
+      </div>
+</form>
+
       <!-- /End replace -->
     </div>
   </main>
