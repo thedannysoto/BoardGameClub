@@ -21,7 +21,7 @@
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline">
               <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-blue-800 focus:outline-none focus:text-white focus:bg-gray-700">Collection</a>
-              <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Team</a>
+              <a href="/games/new" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700"><svg class="fill-current h-4 w-4 inline-block" viewBox="0 0 20 20"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>&nbsp;&nbsp;New Game</a>
               <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Projects</a>
               <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Calendar</a>
               <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Reports</a>
@@ -78,19 +78,19 @@
   <header class="bg-white shadow">
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold leading-tight text-gray-900">
-        <%= @user.username %>
+        <%= @user.username %>'s Collection
       </h2>
     </div>
   </header>
   <main>
-<div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+<div class="max-w-7xl mx-auto py-6 px-40">
       <!-- Replace with your content -->
 <% if !@user.games.empty?%>
   <div class="flex flex-wrap justify-start">
   <% @user.games.each do |game| %>
       <div class="max-w-sm overflow-hidden shadow-lg mx-10 my-10">
         <% if game[:img_url] %>
-          <img class="w-full" src="<%= game[:img_url] %>" alt ="<%= game[:name] %>">
+          <img class="object-scale-down flex" id="imagesizer" src="<%= game[:img_url] %>" alt ="<%= game[:name] %>">
         <% else %>
           <img class="w-full" src="/images/gameboard.jpg" alt ="<%= game[:name] %>">
         <% end %>
@@ -116,14 +116,20 @@
           <a href="/games/edit/<%= game[:id] %>"><button class="w-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
             Edit
           </button></a>
-          <a href="/games/edit"><button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 mx-4 rounded focus:outline-none focus:shadow-outline" type="button">
+          <a href="/games/edit/<%= game[:id] %>/delete">
+           <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 mx-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="delete">
             Delete
-          </button></a>
+            </button>
+            </a>   
         </div>
       </div>
       <% end %>
       <% end %>
     </div>
+
+
+
+    
       <!-- /End replace -->
     </div>
   </main>
