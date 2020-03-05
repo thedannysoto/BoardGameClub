@@ -89,4 +89,16 @@ class GameController < ApplicationController
         redirect '/login'
         end
     end
+
+    get "/games/wishlist" do 
+        @games = Game.order(:name)
+        if logged_in?
+            @user = current_user
+            erb :'/games/wishlist' 
+        else 
+        flash[:alert] = "You must be logged in to view that page."
+        redirect '/login'
+        end
+
+    end
 end

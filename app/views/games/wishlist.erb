@@ -20,10 +20,10 @@
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline">
-              <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-blue-800 focus:outline-none focus:text-white focus:bg-gray-700">Collection</a>
+              <a href="/games" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Collection</a>
               <a href="/games/new" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700"><svg class="fill-current h-4 w-4 inline-block" viewBox="0 0 20 20"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>&nbsp;&nbsp;New Game</a>
-              <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Projects</a>
-              <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Calendar</a>
+              <a href="/games/all" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">All Games</a>
+              <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-white bg-blue-800 focus:outline-none focus:text-white focus:bg-gray-700">Wishlist</a>
               <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Reports</a>
             </div>
           </div>
@@ -60,10 +60,10 @@
     </div>
     <div :class="{'block': open, 'hidden': !open}" class="hidden md:hidden">
       <div class="px-2 pt-2 pb-3 sm:px-3">
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 focus:outline-none focus:text-white focus:bg-gray-700">Collection</a>
-        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Team</a>
-        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Projects</a>
-        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Calendar</a>
+        <a href="/games" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Collection</a>
+        <a href="/games/new" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700"><svg class="fill-current h-4 w-4 inline-block" viewBox="0 0 20 20"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>&nbsp;&nbsp;New Game</a>
+        <a href="/games/all" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">All Games</a>
+        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 focus:outline-none focus:text-white focus:bg-gray-700">Wishlist</a>
         <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Reports</a>
       </div>
       <div class="pt-4 pb-3 border-t border-gray-700">
@@ -78,80 +78,9 @@
   <header class="bg-white shadow">
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold leading-tight text-gray-900">
-        Game List
+        <%= @user.username %>'s Wishlist
       </h2>
     </div>
   </header>
   <main>
 <div class="max-w-7xl mx-auto py-6 px-40">
-
-<!-- Replace with your content -->
-<div class="flex flex-col">
-  <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-    <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-      <table class="min-w-full">
-        <thead>
-          <tr>
-            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              Name
-            </th>
-            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              Publisher
-            </th>
-            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              Year Published
-            </th>
-            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              Player Count
-            </th>
-            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              Playing Time
-            </th>
-            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              Complexity
-            </th>
-          </tr>
-        </thead>
-        <tbody class="bg-white">
-        <% @games.each.with_index do |game, i| %>
-         <% if i>0 && i%2 > 0 %>
-            <tr>
-        <% else %>
-            <tr class="bg-gray-100">
-        <% end %>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-              <div class="flex items-center">
-                <div class="ml-4">
-                  <div class="text-sm leading-5 font-medium text-gray-900"><%= game[:name] %></div>
-                </div>
-              </div>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-              <div class="text-sm leading-5 text-gray-500"><%= game[:publisher] %></div>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-              <span class="px-2 inline-flex text-xs leading-5 text-gray-500">
-                <%= game[:year_published] %>
-              </span>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-              <%= game[:player_count] %>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-              <%= game[:playing_time] %>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-              <%= game[:complexity] %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-      <!-- /End replace -->
-
-   </div>
-  </main>
-</div>

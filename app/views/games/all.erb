@@ -1,169 +1,157 @@
-<!DOCTYPE html>
-<html lang="en" class="antialiased">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>DataTables </title>
-      <meta name="description" content="">
-      <meta name="keywords" content="">
-      <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
-	  <!--Replace with your tailwind.css once created--> 
-	  
+<script src="/javascripts/main.js"></script>
 
-	 <!--Regular Datatables CSS-->
-	 <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
-	 <!--Responsive Extension Datatables CSS-->
-	 <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
-	 
-	  <style>
-		
-		/*Overrides for Tailwind CSS */
-		
-		/*Form fields*/
-		.dataTables_wrapper select,
-		.dataTables_wrapper .dataTables_filter input {
-			color: #4a5568; 			/*text-gray-700*/
-			padding-left: 1rem; 		/*pl-4*/
-			padding-right: 1rem; 		/*pl-4*/
-			padding-top: .5rem; 		/*pl-2*/
-			padding-bottom: .5rem; 		/*pl-2*/
-			line-height: 1.25; 			/*leading-tight*/
-			border-width: 2px; 			/*border-2*/
-			border-radius: .25rem; 		
-			border-color: #edf2f7; 		/*border-gray-200*/
-			background-color: #edf2f7; 	/*bg-gray-200*/
-		}
-
-		/*Row Hover*/
-		table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
-			background-color: #ebf4ff;	/*bg-indigo-100*/
-		}
-		
-		/*Pagination Buttons*/
-		.dataTables_wrapper .dataTables_paginate .paginate_button		{
-			font-weight: 700;				/*font-bold*/
-			border-radius: .25rem;			/*rounded*/
-			border: 1px solid transparent;	/*border border-transparent*/
-		}
-		
-		/*Pagination Buttons - Current selected */
-		.dataTables_wrapper .dataTables_paginate .paginate_button.current	{
-			color: #fff !important;				/*text-white*/
-			box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06); 	/*shadow*/
-			font-weight: 700;					/*font-bold*/
-			border-radius: .25rem;				/*rounded*/
-			background: #667eea !important;		/*bg-indigo-500*/
-			border: 1px solid transparent;		/*border border-transparent*/
-		}
-
-		/*Pagination Buttons - Hover */
-		.dataTables_wrapper .dataTables_paginate .paginate_button:hover		{
-			color: #fff !important;				/*text-white*/
-			box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);	 /*shadow*/
-			font-weight: 700;					/*font-bold*/
-			border-radius: .25rem;				/*rounded*/
-			background: #667eea !important;		/*bg-indigo-500*/
-			border: 1px solid transparent;		/*border border-transparent*/
-		}
-		
-		/*Add padding to bottom border */
-		table.dataTable.no-footer {
-			border-bottom: 1px solid #e2e8f0;	/*border-b-1 border-gray-300*/
-			margin-top: 0.75em;
-			margin-bottom: 0.75em;
-		}
-		
-		/*Change colour of responsive icon*/
-		table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
-			background-color: #667eea !important; /*bg-indigo-500*/
-		}
-		
-      </style>
-	  
- 
-
-   </head>
-   <body class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
-      
-
-      <!--Container-->
-      <div class="container w-full md:w-4/5 xl:w-3/5  mx-auto px-2">
-      		 
-			<!--Title-->
-			<h1 class="flex items-center font-sans font-bold break-normal text-indigo-500 px-2 py-8 text-xl md:text-2xl">
-				Responsive <a class="underline mx-2" href="https://datatables.net/">DataTables.net</a> Table
-			</h1>
-			
-			
-			<!--Card-->
-			 <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-			 
-				
-				<table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
-					<thead>
-						<tr>
-							<th data-priority="1">Name</th>
-							<th data-priority="2">Position</th>
-							<th data-priority="3">Office</th>
-							<th data-priority="4">Age</th>
-							<th data-priority="5">Start date</th>
-							<th data-priority="6">Salary</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Tiger Nixon</td>
-							<td>System Architect</td>
-							<td>Edinburgh</td>
-							<td>61</td>
-							<td>2011/04/25</td>
-							<td>$320,800</td>
-						</tr>
-						
-						<!-- Rest of your data (refer to https://datatables.net/examples/server_side/ for server side processing)-->
-						
-						<tr>
-							<td>Donna Snider</td>
-							<td>Customer Support</td>
-							<td>New York</td>
-							<td>27</td>
-							<td>2011/01/25</td>
-							<td>$112,000</td>
-						</tr>
-					</tbody>
-					
-				</table>
-				
-				
-			</div>
-			<!--/Card-->
-
-
+<% if flash.has?(:message) %>    
+      <div id="notice-wrapper">
+        <p class="notice"><%= flash[:message] %></p>
       </div>
-      <!--/container-->
-	  
-	  
+    <% elsif flash.has?(:alert) %>
+      <div id="alert-wrapper">
+        <p class="alert"><%= flash[:alert] %></p>
+      </div>
+    <% end %>
 
+<div>
+  <nav x-data="{ open: false }" @keydown.window.escape="open = false" class="bg-blue-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <img class="h-8 w-30" src="/images/logomain.png" alt="" />
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline">
+              <a href="/games" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Collection</a>
+              <a href="/games/new" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700"><svg class="fill-current h-4 w-4 inline-block" viewBox="0 0 20 20"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>&nbsp;&nbsp;New Game</a>
+              <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-white bg-blue-800 focus:outline-none focus:text-white focus:bg-gray-700">All Games</a>
+              <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Wishlist</a>
+              <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Reports</a>
+            </div>
+          </div>
+        </div>
+        <div class="hidden md:block">
+          <div class="ml-4 flex items-center md:ml-6">
+            
+            <div @click.away="open = false" class="ml-3 relative" x-data="{ open: false }">
+              <div>
+                <button @click="open = !open" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-blue-800 focus:outline-none focus:bg-blue-800 focus:text-white">
+            <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+              <path :class="{'hidden': open, 'inline-flex': !open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              <path :class="{'hidden': !open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+              </div>
+              <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
+                <div class="py-1 rounded-md bg-white shadow-xs">
+                  <a href="/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="-mr-2 flex md:hidden">
+          <button @click="open = !open" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white">
+            <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+              <path :class="{'hidden': open, 'inline-flex': !open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              <path :class="{'hidden': !open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div :class="{'block': open, 'hidden': !open}" class="hidden md:hidden">
+      <div class="px-2 pt-2 pb-3 sm:px-3">
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 focus:outline-none focus:text-white focus:bg-gray-700">Collection</a>
+        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Team</a>
+        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Projects</a>
+        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Calendar</a>
+        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Reports</a>
+      </div>
+      <div class="pt-4 pb-3 border-t border-gray-700">
+        <div class="flex items-center px-5">
+        </div>
+        <div class="mt-3 px-2">
+          <a href="/logout" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Sign out</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold leading-tight text-gray-900">
+        Game List
+      </h2>
+    </div>
+  </header>
+  <main>
+<div class="max-w-7xl mx-auto py-6 px-40">
 
+<!-- Replace with your content -->
+<div class="flex flex-col">
+  <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+    <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+      <table class="min-w-full">
+        <thead>
+          <tr>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Name
+            </th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Publisher
+            </th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Year Published
+            </th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Player Count
+            </th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Playing Time
+            </th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Complexity
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+        <% @games.each.with_index do |game, i| %>
+         <% if i>0 && i%2 > 0 %>
+            <tr>
+        <% else %>
+            <tr class="bg-gray-100">
+        <% end %>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              <div class="flex items-center">
+                <div class="ml-4">
+                  <div class="text-sm leading-5 font-medium text-gray-900"><%= game[:name] %></div>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              <div class="text-sm leading-5 text-gray-500"><%= game[:publisher] %></div>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              <span class="px-2 inline-flex text-xs leading-5 text-gray-500">
+                <%= game[:year_published] %>
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+              <%= game[:player_count] %>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+              <%= game[:playing_time] %>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+              <%= game[:complexity] %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+      <!-- /End replace -->
 
-	<!-- jQuery -->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-		
-	<!--Datatables -->
-	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-	<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-	<script>
-		$(document).ready(function() {
-			
-			var table = $('#example').DataTable( {
-					responsive: true
-				} )
-				.columns.adjust()
-				.responsive.recalc();
-		} );
-	
-	</script>
-
-   </body>
-</html>
+   </div>
+  </main>
+</div>
