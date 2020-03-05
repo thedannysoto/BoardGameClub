@@ -23,7 +23,7 @@
               <a href="/games" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Collection</a>
               <a href="/games/new" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700"><svg class="fill-current h-4 w-4 inline-block" viewBox="0 0 20 20"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>&nbsp;&nbsp;New Game</a>
               <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-white bg-blue-800 focus:outline-none focus:text-white focus:bg-gray-700">All Games</a>
-              <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Wishlist</a>
+              <a href="/games/wishlist" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Wishlist</a>
               <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Reports</a>
             </div>
           </div>
@@ -110,6 +110,9 @@
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
               Complexity
             </th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Add to Wishlist
+            </th>
           </tr>
         </thead>
         <tbody class="bg-white">
@@ -142,6 +145,14 @@
             </td>
             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
               <%= game[:complexity] %>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+            <% if !@user.games.find_by(:name => game[:name]) %>
+              <form action="games/wishlist/<% game[:id] %>" method="POST">  
+              <button type="submit" value="submit"><svg class="h-5 w-5 ml-10 fill-current text-blue-500 hover:text-yellow-500" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              </button>
+              </form>
+            <% end %>
             </td>
           </tr>
           <% end %>

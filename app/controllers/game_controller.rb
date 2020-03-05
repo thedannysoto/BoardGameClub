@@ -83,6 +83,7 @@ class GameController < ApplicationController
     get "/games/all" do 
         @games = Game.order(:name)
         if logged_in?
+            @user = current_user
             erb :'/games/all' 
         else 
         flash[:alert] = "You must be logged in to view that page."
