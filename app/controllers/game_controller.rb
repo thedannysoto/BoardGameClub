@@ -100,6 +100,20 @@ class GameController < ApplicationController
         flash[:alert] = "You must be logged in to view that page."
         redirect '/login'
         end
+    end
 
+    post "/games/wishlist/:id" do 
+        user = current_user
+        if !user.wishlist
+            wishlist = Wishlist.new
+            wishlist.user = user
+            wishlist.save
+        end
+        game = Game.find_by_id(params[:id])
+        wishlist = user.wishlist
+        wishlist.games << game 
+        wishlist.save
+        flash[:message] = "Added Game to Wishlist"
+        redirect "/games/wishlist"
     end
 end
