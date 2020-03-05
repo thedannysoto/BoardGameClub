@@ -6,7 +6,7 @@ class GameController < ApplicationController
             @user = current_user
             erb :'/games/games'
         else 
-            flash[:alert] = "You must be logged in to view that page."
+            flash[:alert] = "You must be logged in to view that page"
             redirect '/login'
         end 
     end
@@ -16,14 +16,14 @@ class GameController < ApplicationController
             @user = current_user
             erb :'/games/new'
         else 
-            flash[:alert] = "You must be logged in to view that page."
+            flash[:alert] = "You must be logged in to view that page"
             redirect '/login'
         end 
     end
 
     post '/games' do 
         if params[:game][:name].empty?
-            flash[:alert] = "Name field cannot be left blank."
+            flash[:alert] = "Name field cannot be left blank"
             redirect '/games/new'
         end
         find_game = Game.find_by(:name => params[:game][:name])
@@ -34,7 +34,7 @@ class GameController < ApplicationController
             game.users << current_user
             game.save
         end 
-        flash[:message] = "Game successfully added to collection!"
+        flash[:message] = "Game added to Collection"
         redirect '/games'
     end
 
@@ -44,7 +44,7 @@ class GameController < ApplicationController
             @user = current_user
             erb :'/games/edit'
         else 
-            flash[:alert] = "You must be logged in to view that page."
+            flash[:alert] = "You must be logged in to view that page"
             redirect '/login'
         end 
 
@@ -52,12 +52,12 @@ class GameController < ApplicationController
 
     patch "/games/edit/:id" do 
         if params[:game][:name].empty?
-            flash[:alert] = "Name field cannot be left blank."
+            flash[:alert] = "Name field cannot be left blank"
             redirect "/games/edit/#{params[:id]}"
         end
         game = Game.find_by_id(params[:id])
         game.update_attributes(params[:game])
-        flash[:message] = "Game updated successfully!"
+        flash[:message] = "Game updated successfully"
         redirect '/games'
     end
 
@@ -66,7 +66,7 @@ class GameController < ApplicationController
         if logged_in?
             erb :'/games/delete' 
         else 
-        flash[:alert] = "You must be logged in to view that page."
+        flash[:alert] = "You must be logged in to view that page"
         redirect '/login'
         end
     end
@@ -76,7 +76,7 @@ class GameController < ApplicationController
         user = current_user
         usergame = UserGame.find_by(:user_id => user.id, :game_id => game.id)
         usergame.delete
-        flash[:message] = "Game removed from collection."
+        flash[:message] = "Game removed from Collection"
         redirect "/games"
     end
 
@@ -86,7 +86,7 @@ class GameController < ApplicationController
             @user = current_user
             erb :'/games/all' 
         else 
-        flash[:alert] = "You must be logged in to view that page."
+        flash[:alert] = "You must be logged in to view that page"
         redirect '/login'
         end
     end
@@ -97,7 +97,7 @@ class GameController < ApplicationController
             @user = current_user
             erb :'/games/wishlist' 
         else 
-        flash[:alert] = "You must be logged in to view that page."
+        flash[:alert] = "You must be logged in to view that page"
         redirect '/login'
         end
     end
@@ -113,7 +113,16 @@ class GameController < ApplicationController
         wishlist = user.wishlist
         wishlist.games << game 
         wishlist.save
-        flash[:message] = "Added Game to Wishlist"
+        flash[:message] = "Game added to Wishlist"
+        redirect "/games/wishlist"
+    end
+
+    delete "/games/wishlist/:id/delete" do 
+        user = current_user
+        wishlist = user.wishlist
+        wishlist_game = WishlistGame.find_by(:wishlist_id => wishlist.id, :game_id => params[:id])
+        wishlist_game.delete
+        flash[:message] = "Game removed from Wishlist"
         redirect "/games/wishlist"
     end
 end

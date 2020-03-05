@@ -18,7 +18,7 @@
     top: 0;
     width: 100%;
     z-index: 999;
-    background: rgba(66, 153, 225, 0.85);
+    background: rgba(17, 191, 194, 1);
   }
 
   #alert-wrapper {
@@ -26,10 +26,10 @@
     top: 0;
     width: 100%;
     z-index: 999;
-    background: rgba(214, 70, 70, 0.85);
+    background: rgba(214, 70, 70, 1);
   }
   .notice, .alert {
-    padding: 2.5rem 0;
+    padding: 1.5rem 0;
     text-align: center;
     margin: 0;
     font-size: 1.25rem;
