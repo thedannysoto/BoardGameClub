@@ -1,0 +1,174 @@
+<script src="/javascripts/main.js"></script>
+
+<% if flash.has?(:message) %>    
+      <div id="notice-wrapper">
+        <p class="notice"><%= flash[:message] %></p>
+      </div>
+    <% elsif flash.has?(:alert) %>
+      <div id="alert-wrapper">
+        <p class="alert"><%= flash[:alert] %></p>
+      </div>
+    <% end %>
+
+<div>
+  <nav x-data="{ open: false }" @keydown.window.escape="open = false" class="bg-blue-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <img class="h-8 w-30" src="/images/logomain.png" alt="" />
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline">
+              <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-blue-800 focus:outline-none focus:text-white focus:bg-gray-700">Collection</a>
+              <a href="/games/new" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700"><svg class="fill-current h-4 w-4 inline-block" viewBox="0 0 20 20"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>&nbsp;&nbsp;New Game</a>
+              <a href="/games/all" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">All Games</a>
+              <a href="/games/wishlist" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Wishlist</a>
+              <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Reports</a>
+            </div>
+          </div>
+        </div>
+        <div class="hidden md:block">
+          <div class="ml-4 flex items-center md:ml-6">
+            
+            <div @click.away="open = false" class="ml-3 relative" x-data="{ open: false }">
+              <div>
+                <button @click="open = !open" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-blue-800 focus:outline-none focus:bg-blue-800 focus:text-white">
+            <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+              <path :class="{'hidden': open, 'inline-flex': !open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              <path :class="{'hidden': !open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+              </div>
+              <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
+                <div class="py-1 rounded-md bg-white shadow-xs">
+                  <a href="/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="-mr-2 flex md:hidden">
+          <button @click="open = !open" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white">
+            <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+              <path :class="{'hidden': open, 'inline-flex': !open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              <path :class="{'hidden': !open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div :class="{'block': open, 'hidden': !open}" class="hidden md:hidden">
+      <div class="px-2 pt-2 pb-3 sm:px-3">
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 focus:outline-none focus:text-white focus:bg-gray-700">Collection</a>
+        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Team</a>
+        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Projects</a>
+        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Calendar</a>
+        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Reports</a>
+      </div>
+      <div class="pt-4 pb-3 border-t border-gray-700">
+        <div class="flex items-center px-5">
+        </div>
+        <div class="mt-3 px-2">
+          <a href="/logout" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Sign out</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold leading-tight text-gray-900">
+        <%= @user.username %>'s Friends
+      </h2>
+    </div>
+  </header>
+  <main>
+<div class="max-w-7xl mx-auto py-6 px-40">
+
+<!-- replaced content -->
+<div class="flex flex-col">
+  <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+    <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+      <table class="min-w-full">
+        <thead>
+          <tr>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Name
+            </th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Publisher
+            </th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Year Published
+            </th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Player Count
+            </th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Playing Time
+            </th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Complexity
+            </th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Add to Wishlist
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+        <% @games.each.with_index do |game, i| %>
+         <% if i>0 && i%2 > 0 %>
+            <tr>
+        <% else %>
+            <tr class="bg-gray-100">
+        <% end %>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              <div class="flex items-center">
+                <div class="ml-4">
+                  <% if @user.games.find_by(:name => game.name) %>
+                    <div class="text-sm leading-5 font-medium text-gray-600 rounded-full bg-green-200 py-1 px-3"><%= game[:name] %></div>
+                  <% else %>
+                    <div class="text-sm leading-5 font-medium text-gray-600"><%= game[:name] %></div>
+                  <% end %>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              <div class="text-sm leading-5 text-gray-500"><%= game[:publisher] %></div>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              <span class="px-2 inline-flex text-xs leading-5 text-gray-500">
+                <%= game[:year_published] %>
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+              <%= game[:player_count] %>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+              <%= game[:playing_time] %>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+              <%= game[:complexity] %>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+            <% if !@user.games.find_by(:name => game[:name]) && !@user.wishlist.games.find_by(:name => game[:name]) %>
+              <form action="/games/wishlist/<%= game[:id] %>" method="POST">  
+              <button type="submit" value="submit"><svg class="h-5 w-5 ml-10 fill-current text-blue-500 hover:text-yellow-500" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              </button>
+              </form>
+            <% elsif @user.wishlist.games.find_by(:name => game[:name])%>
+              <svg class="h-5 w-5 ml-10 fill-current text-green-400" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
+            <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+      <!-- /End replace -->
+
+   </div>
+  </main>
+</div>
