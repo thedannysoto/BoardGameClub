@@ -78,55 +78,66 @@
   <header class="bg-white shadow">
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold leading-tight text-gray-900">
-        <%= @user.username %>'s Friends
+        Viewing <%= @friend.username %>'s Collection
       </h2>
     </div>
   </header>
   <main>
 <div class="max-w-7xl mx-auto py-6 px-40">
-
-<!-- replaced content -->
-
-<div class="flex flex-col">
-  <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-    <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-      <table class="min-w-full">
-        <thead>
-          <tr>
-            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              Name
-            </th>
-            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              Game Count
-            </th>
-          </tr>
-        </thead>
-        <tbody class="bg-white">
-        <% @users.each do |user| %>
-          <% if user.id != @user.id %>
-            <tr>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-              <div class="flex items-center">
-                <div class="ml-4">
-                    <a href="/games/friends/<%= user.id %>">
-                    <div class="text-sm leading-5 font-medium text-gray-600 hover:text-white hover:bg-blue-600 rounded-full px-3 -ml-3"><%= user[:username] %></div>
-                    </a>
-                </div>
-              </div>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-              <div class="text-sm leading-5 text-gray-500"><%= user.games.length %></div>
-            </td>
-          <% end %>
-          </tr>
+      <!-- Replace with your content -->
+<% if !@friend.games.empty?%>
+  <div class="flex flex-wrap justify-start">
+  <% @games.each do |game| %>
+      <div class="max-w-sm overflow-hidden shadow-lg mx-10 my-10">
+        <% if !game[:img_url].empty? %>
+          <img class="object-scale-down flex" id="imagesizer" src="<%= game[:img_url] %>" alt ="<%= game[:name] %>">
+        <% else %>
+          <img class="w-full" src="/images/gameboard.jpg" alt ="<%= game[:name] %>">
         <% end %>
-        </tbody>
-      </table>
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2"><%= game[:name] %></div>
+          <p class="text-gray-700 text-base">
+          <b>Publisher: </b><%= game[:publisher] %>
+          </p>
+          <p class="text-gray-700 text-base">
+          <b>Year Published: </b><%= game[:year_published] %>
+          </p>
+          <p class="text-gray-700 text-base">
+          <b>Player Count: </b><%= game[:player_count] %>
+          </p>
+          <p class="text-gray-700 text-base">
+          <b>Playing Time: </b><%= game[:playing_time] %>
+          </p>
+          <p class="text-gray-700 text-base">
+          <b>Complexity: </b><%= game[:complexity] %>
+          </p>
+        </div>
+        <div class="flex justify-end my-4">
+            <% if game == @user.games.find_by(:name => game[:name]) %>
+                <button type="submit" value="submit" class="bg-green-500 text-white font-bold py-2 px-4 mx-4 rounded focus:outline-none focus:shadow-outline">
+                In Collection
+                </button>
+            <% elsif game == @user.wishlist.games.find_by(:name => game[:name]) %>
+                <button type="submit" value="submit" class="bg-gray-500 text-white font-bold py-2 px-4 mx-4 rounded focus:outline-none focus:shadow-outline">
+                In Wishlist
+                </button>
+            <% else %>
+                <form action="/games/friends/<%= @friend.id %>/<%= game[:id] %>" method="POST">  
+                    <button type="submit" value="submit" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 mx-4 rounded focus:outline-none focus:shadow-outline">
+                        Add to Wishlist
+                    </button>
+                </form>  
+            <% end %> 
+        </div>
+      </div>
+      <% end %>
+      <% end %>
     </div>
-  </div>
-</div>
-      <!-- /End replace -->
 
-   </div>
+
+
+    
+      <!-- /End replace -->
+    </div>
   </main>
 </div>

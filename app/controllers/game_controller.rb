@@ -127,14 +127,39 @@ class GameController < ApplicationController
         redirect "/games/wishlist"
     end
 
-    get "/games/test" do 
-        @games = Game.order(:name)
+    get "/games/friends" do 
         if logged_in?
             @user = current_user
-            erb :'/games/test' 
+            @users = User.all 
+            erb :'/games/friends' 
         else 
         flash[:alert] = "You must be logged in to view that page"
         redirect '/login'
         end
+    end
+
+    get "/games/friends/:id" do 
+        if logged_in?
+            @user = current_user
+            if @user.id == params[:id]
+                redirect "/games"
+            end
+            @friend = User.find_by_id(params[:id])
+            @games = @friend.games.order(:name)
+            erb :'/games/friend' 
+        else 
+        flash[:alert] = "You must be logged in to view that page"
+        redirect '/login'
+        end
+    end
+
+    post "/games/friends/:fid/:id" do 
+        user = current_user
+        game = Game.find_by_id(params[:id])
+        wishlist = user.wishlist
+        wishlist.games << game 
+        wishlist.save
+        flash[:message] = "Game added to Wishlist"
+        redirect "/games/friends/#{params[:fid]}"
     end
 end
