@@ -8,7 +8,7 @@ class GameController < ApplicationController
             erb :'/games/games'
         else 
             flash[:alert] = "You must be logged in to view that page"
-            redirect '/login'
+            redirect '/'
         end 
     end
 
@@ -18,7 +18,7 @@ class GameController < ApplicationController
             erb :'/games/new'
         else 
             flash[:alert] = "You must be logged in to view that page"
-            redirect '/login'
+            redirect '/'
         end 
     end
 
@@ -46,7 +46,7 @@ class GameController < ApplicationController
             erb :'/games/edit'
         else 
             flash[:alert] = "You must be logged in to view that page"
-            redirect '/login'
+            redirect '/'
         end 
 
     end
@@ -68,7 +68,7 @@ class GameController < ApplicationController
             erb :'/games/delete' 
         else 
         flash[:alert] = "You must be logged in to view that page"
-        redirect '/login'
+        redirect '/'
         end
     end
 
@@ -88,7 +88,7 @@ class GameController < ApplicationController
             erb :'/games/all' 
         else 
         flash[:alert] = "You must be logged in to view that page"
-        redirect '/login'
+        redirect '/'
         end
     end
 
@@ -99,7 +99,7 @@ class GameController < ApplicationController
             erb :'/games/wishlist' 
         else 
         flash[:alert] = "You must be logged in to view that page"
-        redirect '/login'
+        redirect '/'
         end
     end
 
@@ -134,7 +134,7 @@ class GameController < ApplicationController
             erb :'/games/friends' 
         else 
         flash[:alert] = "You must be logged in to view that page"
-        redirect '/login'
+        redirect '/'
         end
     end
 
@@ -149,7 +149,7 @@ class GameController < ApplicationController
             erb :'/games/friend' 
         else 
         flash[:alert] = "You must be logged in to view that page"
-        redirect '/login'
+        redirect '/'
         end
     end
 

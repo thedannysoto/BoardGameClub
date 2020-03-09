@@ -14,10 +14,10 @@ class UserController < ApplicationController
         user.wishlist = Wishlist.new
         user.save
         flash[:message] = "New account created!"
-        erb :'/user/login'
+        redirect "/"
     end
 
-    get '/login' do
+    get '/' do
         erb :'/user/login'
     end
 
@@ -28,13 +28,13 @@ class UserController < ApplicationController
             redirect "/games"
         else
             flash[:alert] = "Invalid username and/or password."
-            redirect '/login'
+            redirect '/'
         end
     end
 
     get "/logout" do
         session.clear
-        redirect "/login"
+        redirect "/"
       end
 
 end
