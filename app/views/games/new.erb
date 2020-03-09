@@ -23,8 +23,8 @@
               <a href="/games" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Collection</a>
               <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-white bg-blue-800 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700"><svg class="fill-current h-4 w-4 inline-block" viewBox="0 0 20 20"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>&nbsp;&nbsp;New Game</a>
               <a href="/games/all" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">All Games</a>
-              <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Calendar</a>
-              <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Reports</a>
+              <a href="/games/wishlist" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Wishlist</a>
+              <a href="/games/friends" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Friends</a>
             </div>
           </div>
         </div>
@@ -60,11 +60,11 @@
     </div>
     <div :class="{'block': open, 'hidden': !open}" class="hidden md:hidden">
       <div class="px-2 pt-2 pb-3 sm:px-3">
-        <a href="/games" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 focus:outline-none focus:text-white focus:bg-gray-700">Collection</a>
-        <a href="/games/new" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700"><svg class="fill-current h-4 w-4 inline-block" viewBox="0 0 20 20"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>&nbsp;&nbsp;New Game</a>
-        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">All Games</a>
-        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Wishlist</a>
-        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Reports</a>
+        <a href="/games" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Collection</a>
+        <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-white bg-blue-600 focus:outline-none focus:text-white focus:bg-gray-700">Add New Game</a>
+        <a href="/games/all" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">All Games</a>
+        <a href="/games/wishlist" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Wishlist</a>
+        <a href="/games/friends" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-blue-700 focus:outline-none focus:text-white focus:bg-gray-700">Friends</a>
       </div>
       <div class="pt-4 pb-3 border-t border-gray-700">
         <div class="flex items-center px-5">
