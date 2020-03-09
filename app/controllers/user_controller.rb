@@ -18,7 +18,7 @@ class UserController < ApplicationController
     end
 
     get '/' do
-        erb :'/user/login'
+        erb :'index'
     end
 
     post "/login" do
