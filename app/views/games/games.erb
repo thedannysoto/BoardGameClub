@@ -87,9 +87,9 @@
       <!-- Replace with your content -->
 <% if !@user.games.empty?%>
   <div class="flex flex-wrap justify-start">
-  <% @user.games.each do |game| %>
+  <% @games.each do |game| %>
       <div class="max-w-sm overflow-hidden shadow-lg mx-10 my-10">
-        <% if game[:img_url] %>
+        <% if !game[:img_url].empty? %>
           <img class="object-scale-down flex" id="imagesizer" src="<%= game[:img_url] %>" alt ="<%= game[:name] %>">
         <% else %>
           <img class="w-full" src="/images/gameboard.jpg" alt ="<%= game[:name] %>">

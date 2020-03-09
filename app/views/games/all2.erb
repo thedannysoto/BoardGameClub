@@ -89,7 +89,7 @@
 <div class="flex flex-col">
   <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
     <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-      <table id="table_id" class="min-w-full">
+      <table class="min-w-full">
         <thead>
           <tr>
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
@@ -126,7 +126,7 @@
               <div class="flex items-center">
                 <div class="ml-4">
                   <% if @user.games.find_by(:name => game.name) %>
-                    <div class="text-sm leading-5 font-medium text-gray-600 rounded-full bg-green-200 py-1 px-3 -ml-3"><%= game[:name] %></div>
+                    <div class="text-sm leading-5 font-medium text-gray-600 rounded-full bg-green-200 py-1 px-3"><%= game[:name] %></div>
                   <% else %>
                     <div class="text-sm leading-5 font-medium text-gray-600"><%= game[:name] %></div>
                   <% end %>
@@ -165,8 +165,9 @@
         </tbody>
       </table>
     </div>
+  </div>
+</div>
       <!-- /End replace -->
-
 
    </div>
   </main>

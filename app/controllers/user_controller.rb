@@ -8,8 +8,10 @@ class UserController < ApplicationController
         #need to check if username is unique and password parameters
         user = User.new(:username => params[:username], :password => params[:password])
         if user[:username].empty? || user[:password_digest] == nil
-            redirect "/failure"
+            flash[:alert] = "Invalid username and/or password"
+            redirect "/signup"
         end
+        user.wishlist = Wishlist.new
         user.save
         flash[:message] = "New account created!"
         erb :'/user/login'

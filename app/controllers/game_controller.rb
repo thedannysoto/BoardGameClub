@@ -4,6 +4,7 @@ class GameController < ApplicationController
     get '/games' do 
         if logged_in?
             @user = current_user
+            @games = @user.games.order(:name)
             erb :'/games/games'
         else 
             flash[:alert] = "You must be logged in to view that page"
@@ -114,7 +115,7 @@ class GameController < ApplicationController
         wishlist.games << game 
         wishlist.save
         flash[:message] = "Game added to Wishlist"
-        redirect "/games/wishlist"
+        redirect "/games/all"
     end
 
     delete "/games/wishlist/:id/delete" do 
@@ -124,5 +125,16 @@ class GameController < ApplicationController
         wishlist_game.delete
         flash[:message] = "Game removed from Wishlist"
         redirect "/games/wishlist"
+    end
+
+    get "/games/test" do 
+        @games = Game.order(:name)
+        if logged_in?
+            @user = current_user
+            erb :'/games/test' 
+        else 
+        flash[:alert] = "You must be logged in to view that page"
+        redirect '/login'
+        end
     end
 end
