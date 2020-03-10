@@ -87,8 +87,7 @@ class GameController < ApplicationController
             @user = current_user
             erb :'/games/all' 
         else 
-        flash[:alert] = "You must be logged in to view that page"
-        redirect '/'
+            not_logged_in
         end
     end
 
@@ -98,8 +97,7 @@ class GameController < ApplicationController
             @user = current_user
             erb :'/games/wishlist' 
         else 
-        flash[:alert] = "You must be logged in to view that page"
-        redirect '/'
+            not_logged_in
         end
     end
 
@@ -133,8 +131,7 @@ class GameController < ApplicationController
             @users = User.all 
             erb :'/games/friends' 
         else 
-        flash[:alert] = "You must be logged in to view that page"
-        redirect '/'
+            not_logged_in
         end
     end
 
@@ -148,8 +145,7 @@ class GameController < ApplicationController
             @games = @friend.games.order(:name)
             erb :'/games/friend' 
         else 
-        flash[:alert] = "You must be logged in to view that page"
-        redirect '/'
+            not_logged_in
         end
     end
 
