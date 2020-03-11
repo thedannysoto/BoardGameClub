@@ -19,6 +19,10 @@ class UserController < ApplicationController
         elsif params[:password].match(/^[a-zA-Z0-9]{8,15}$/) == nil
             flash[:alert] = "Password must be between 8-15 Alphanumeric Characters"
             redirect "/signup"
+        #Checks if username is 4-20 alphanumeric characters
+        elsif params[:username].match(/^[a-zA-Z0-9]{4,20}$/) == nil
+            flash[:alert] = "Username must be between 4-20 Alphanumeric Characters"
+            redirect "/signup"
         end
         user.wishlist = Wishlist.new
         user.save
