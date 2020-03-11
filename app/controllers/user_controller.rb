@@ -1,5 +1,6 @@
 class UserController < ApplicationController
 
+    
     get "/signup" do
         erb :'/user/signup'
     end
@@ -25,10 +26,6 @@ class UserController < ApplicationController
         redirect "/"
     end
 
-    get '/' do
-        erb :'login'
-    end
-
     post "/login" do
         @user = User.find_by(:username => params[:username])
         if @user && @user.authenticate(params[:password])
@@ -42,6 +39,7 @@ class UserController < ApplicationController
 
     get "/logout" do
         session.clear
+        flash[:message] = "Successfully signed out"
         redirect "/"
       end
 
