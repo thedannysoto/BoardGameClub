@@ -21,9 +21,8 @@ class GameController < ApplicationController
     end
 
     post '/games' do 
-        if params[:game][:name].empty?
-            flash[:alert] = "Name field cannot be left blank"
-            redirect '/games/new'
+        if !params_check?
+            redirect "/games/new"
         end
         find_game = Game.find_by(:name => params[:game][:name])
         if find_game
