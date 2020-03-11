@@ -34,7 +34,7 @@ class ApplicationController < Sinatra::Base
       if params[:game][:name].empty?
         flash[:alert] = "Name field cannot be left blank"
         return false
-      elsif params[:game][:year_published].match(/^[0-9]{4}/) == nil && !params[:game][:year_published].empty?
+      elsif params[:game][:year_published].match(/^[0-9]{4}$/) == nil && !params[:game][:year_published].empty?
         flash[:alert] = "Invalid year published"
         return false
       elsif params[:game][:player_count].match(/^[0-9]+-*[0-9]*$/) == nil && !params[:game][:player_count].empty?

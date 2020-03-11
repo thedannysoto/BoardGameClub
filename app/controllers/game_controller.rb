@@ -48,8 +48,7 @@ class GameController < ApplicationController
     end
 
     patch "/games/edit/:id" do 
-        if params[:game][:name].empty?
-            flash[:alert] = "Name field cannot be left blank"
+        if !params_check?
             redirect "/games/edit/#{params[:id]}"
         end
         game = Game.find_by_id(params[:id])
