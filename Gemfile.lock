@@ -1,24 +1,22 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    activemodel (4.2.11.1)
-      activesupport (= 4.2.11.1)
-      builder (~> 3.1)
-    activerecord (4.2.11.1)
-      activemodel (= 4.2.11.1)
-      activesupport (= 4.2.11.1)
-      arel (~> 6.0)
-    activesupport (4.2.11.1)
-      i18n (~> 0.7)
+    activemodel (5.2.8.1)
+      activesupport (= 5.2.8.1)
+    activerecord (5.2.8.1)
+      activemodel (= 5.2.8.1)
+      activesupport (= 5.2.8.1)
+      arel (>= 9.0)
+    activesupport (5.2.8.1)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 0.7, < 2)
       minitest (~> 5.1)
-      thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    arel (6.0.4)
+    arel (9.0.0)
     bcrypt (3.1.13)
     bond (0.5.1)
-    builder (3.2.4)
     capybara (3.31.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -28,16 +26,16 @@ GEM
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
     coderay (1.1.2)
-    concurrent-ruby (1.1.6)
+    concurrent-ruby (1.1.10)
     daemons (1.3.1)
     diff-lcs (1.3)
     eventmachine (1.2.7)
-    i18n (0.9.5)
+    i18n (1.11.0)
       concurrent-ruby (~> 1.0)
     method_source (0.9.2)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
-    minitest (5.14.0)
+    minitest (5.16.2)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     nokogiri (1.10.8)
@@ -100,7 +98,7 @@ GEM
       ripl-multi_line (>= 0.2.4)
       ripl-rack (>= 0.2.0)
       sinatra (>= 1.2.1)
-    tzinfo (1.2.6)
+    tzinfo (1.2.9)
       thread_safe (~> 0.1)
     xpath (3.2.0)
       nokogiri (~> 1.8)
@@ -109,7 +107,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord (~> 4.2, >= 4.2.6)
+  activerecord (~> 5.2)
   bcrypt
   capybara
   pry
